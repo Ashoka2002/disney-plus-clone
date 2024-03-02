@@ -48,6 +48,7 @@ const Container = styled.div`
 
   p {
     font-size: 20px;
+    width: 760px;
   }
 `;
 
@@ -73,6 +74,7 @@ const ImageTitle = styled.div`
   min-width: 200px;
   height: 30vh;
   width: 35vw;
+  margin-top: 30px;
 
   img {
     width: 100%;
