@@ -18,6 +18,7 @@ function Home() {
 
       dispatch(setMovies(tempData));
     });
+    // eslint-disable-next-line
   }, []);
 
   return (

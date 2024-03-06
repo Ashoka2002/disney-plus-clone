@@ -1,17 +1,33 @@
-import React from "react";
+// import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
+import { selectMovies } from "../features/movies/movieSlice";
+// import db from "../firebase";
 
 function Detail() {
-  return (
+  const { id } = useParams();
+  const movie = useSelector(selectMovies).find((movie) => movie.id === id);
+
+  // const [movie, setMovie] = useState();
+  // useEffect(() => {
+  //   db.collection("movies")
+  //     .doc(id)
+  //     .get()
+  //     .then((movie) => {
+  //       if (movie.exists) {
+  //         setMovie(movie.data());
+  //       }
+  //     });
+  // }, [id]);
+
+  return movie ? (
     <Container>
       <Background>
-        <img
-          src="https://www.desktopbackground.org/download/1400x1050/2014/12/20/874158_high-resolution-disney-princess-wallpapers-full-hd-full-size_1920x1080_h.jpg"
-          alt="background"
-        />
+        <img src={movie.backgroundImg} alt="background" />
       </Background>
       <ImageTitle>
-        <img src="images/viewers-disney.png" alt="Logo" />
+        <img src={movie.titleImg} alt="Logo" />
       </ImageTitle>
       <Controls>
         <PlayButton>
@@ -30,12 +46,11 @@ function Detail() {
         </GroupWatchButton>
       </Controls>
 
-      <h3> 2018 • 2m • family, kids, animation</h3>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, rerum vero. Harum, inventore vitae. Libero
-        facere in minima voluptas aspernatur.
-      </p>
+      <h3>{movie.subTitle}</h3>
+      <p>{movie.description}</p>
     </Container>
+  ) : (
+    <h1>No movies Found!!!</h1>
   );
 }
 
