@@ -4,12 +4,18 @@ import ImgSlider from "./ImgSlider";
 import Viewers from "./Viewers";
 import Movies from "./Movies";
 import db from "../firebase";
-import { useDispatch } from "react-redux";
-import { setMovies } from "../features/movies/movieSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { selectMovies, setMovies } from "../features/movies/movieSlice";
 
 function Home() {
   const dispatch = useDispatch();
+  const movies = useSelector(selectMovies);
+  const recommended = movies.filter((movie) => movie.type === "recommend");
+  const newToDisney = movies.filter((movie) => movie.type === "new");
+  const trending = movies.filter((movie) => movie.type === "original");
+  const original = movies.filter((movie) => movie.type === "trending");
 
+  console.log("recommended ", movies);
   useEffect(() => {
     db.collection("movies").onSnapshot((snapshot) => {
       const tempData = snapshot.docs.map((doc) => {
@@ -25,7 +31,10 @@ function Home() {
     <Container>
       <ImgSlider />
       <Viewers />
-      <Movies />
+      <Movies title="Recommended for you" movies={recommended} />
+      <Movies title="New to Disney+" movies={newToDisney} />
+      <Movies title="Trending" movies={trending} />
+      <Movies title="Original" movies={original} />
     </Container>
   );
 }

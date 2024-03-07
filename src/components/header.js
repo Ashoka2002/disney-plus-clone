@@ -11,19 +11,27 @@ function Header() {
   const userName = useSelector(selectUserName);
   const userPhoto = useSelector(selectUserPhoto);
 
+  console.log(userPhoto);
+
   useEffect(() => {
     auth.onAuthStateChanged(async (user) => {
       if (!user) return;
       dispatch(setUserLogin({ name: user.displayName, photo: user.photoURL, email: user.email }));
       navigate("/");
     });
+    // eslint-disable-next-line
   }, []);
 
   const signIn = () => {
-    auth.signInWithPopup(provider).then((res) => {
-      dispatch(setUserLogin({ name: res.user.displayName, photo: res.user.photoURL, email: res.user.email }));
-      navigate("/");
-    });
+    auth
+      .signInWithPopup(provider)
+      .then((res) => {
+        dispatch(setUserLogin({ name: res.user.displayName, photo: res.user.photoURL, email: res.user.email }));
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
 
   const signOut = () => {
@@ -71,9 +79,10 @@ function Header() {
               <span>SERIES</span>
             </a>
           </NavMenu>
-          <div>
-            <UserImg onClick={signOut} src="https://ashok-choudhary.netlify.app/img/ashok.jpg" alt="User image" />
-          </div>
+          <SignOut>
+            <UserImg src={userPhoto} alt={userName} />
+            <span onClick={signOut}>Sign out</span>
+          </SignOut>
         </>
       )}
     </Nav>
@@ -138,11 +147,36 @@ const NavMenu = styled.div`
   }
 `;
 
+const SignOut = styled.div`
+  position: relative;
+  span {
+    position: absolute;
+    width: 100px;
+    bottom: -40px;
+    left: -30px;
+    font-size: 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 4px 6px;
+    z-index: 1;
+    border: 1px solid #f9f9f9;
+    text-align: center;
+    border-radius: 4px;
+    cursor: pointer;
+    opacity: 0;
+    transform: 0.25s all;
+  }
+
+  &:hover {
+    span {
+      opacity: 1;
+    }
+  }
+`;
+
 const UserImg = styled.img`
   height: 48px;
   width: 48px;
   border-radius: 50%;
-  cursor: pointer;
 
   //Test
   object-fit: cover;
