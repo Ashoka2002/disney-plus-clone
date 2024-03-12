@@ -15,7 +15,6 @@ function Home() {
   const trending = movies.filter((movie) => movie.type === "original");
   const original = movies.filter((movie) => movie.type === "trending");
 
-  console.log("recommended ", movies);
   useEffect(() => {
     db.collection("movies").onSnapshot((snapshot) => {
       const tempData = snapshot.docs.map((doc) => {

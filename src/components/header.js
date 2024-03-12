@@ -11,8 +11,6 @@ function Header() {
   const userName = useSelector(selectUserName);
   const userPhoto = useSelector(selectUserPhoto);
 
-  console.log(userPhoto);
-
   useEffect(() => {
     auth.onAuthStateChanged(async (user) => {
       if (!user) return;
