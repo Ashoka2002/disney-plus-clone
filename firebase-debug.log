@@ -1,0 +1,21 @@
+[debug] [2024-03-12T13:16:06.583Z] ----------------------------------------------------------------------
+[debug] [2024-03-12T13:16:06.586Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Ashok choudhary\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2024-03-12T13:16:06.587Z] CLI Version:   13.4.0
+[debug] [2024-03-12T13:16:06.587Z] Platform:      win32
+[debug] [2024-03-12T13:16:06.588Z] Node Version:  v18.15.0
+[debug] [2024-03-12T13:16:06.589Z] Time:          Tue Mar 12 2024 18:46:06 GMT+0530 (India Standard Time)
+[debug] [2024-03-12T13:16:06.589Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-03-12T13:16:06.720Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-03-12T13:16:06.721Z] > authorizing via signed-in user (ashoka8769@gmail.com)
+[debug] [2024-03-12T13:16:06.721Z] [iam] checking project disney-plus-clone-a8649 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-03-12T13:16:06.727Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/disney-plus-clone-a8649:testIamPermissions [none]
+[debug] [2024-03-12T13:16:06.729Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/disney-plus-clone-a8649:testIamPermissions x-goog-quota-user=projects/disney-plus-clone-a8649
+[debug] [2024-03-12T13:16:06.730Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/disney-plus-clone-a8649:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-03-12T13:16:18.250Z] *** [apiv2] error from fetch(https://cloudresourcemanager.googleapis.com/v1/projects/disney-plus-clone-a8649:testIamPermissions, {"headers":{},"method":"POST","body":"{\"permissions\":[\"firebase.projects.get\",\"firebasehosting.sites.update\"]}"}): FetchError: request to https://cloudresourcemanager.googleapis.com/v1/projects/disney-plus-clone-a8649:testIamPermissions failed, reason: getaddrinfo ENOTFOUND cloudresourcemanager.googleapis.com
+[debug] [2024-03-12T13:16:18.251Z] [iam] error while checking permissions, command may fail: FirebaseError: Failed to make request to https://cloudresourcemanager.googleapis.com/v1/projects/disney-plus-clone-a8649:testIamPermissions
+[debug] [2024-03-12T13:16:18.255Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/disney-plus-clone-a8649 [none]
+[debug] [2024-03-12T13:16:18.266Z] *** [apiv2] error from fetch(https://firebase.googleapis.com/v1beta1/projects/disney-plus-clone-a8649, {"headers":{},"method":"GET","signal":{}}): FetchError: request to https://firebase.googleapis.com/v1beta1/projects/disney-plus-clone-a8649 failed, reason: getaddrinfo ENOTFOUND firebase.googleapis.com
+[debug] [2024-03-12T13:16:18.267Z] Failed to make request to https://firebase.googleapis.com/v1beta1/projects/disney-plus-clone-a8649 (original: request to https://firebase.googleapis.com/v1beta1/projects/disney-plus-clone-a8649 failed, reason: getaddrinfo ENOTFOUND firebase.googleapis.com)
+[error] 
+[error] Error: Assertion failed: resolving hosting target of a site with no site name or target name. This should have caused an error earlier
